@@ -1,14 +1,21 @@
 "use client";
 import { Container } from "@/components/Container";
-import Input from "@/components/Input";
+import { Input } from "@/components/Input";
+import { Tab } from "@/components/Tab";
+
 import { useState } from "react";
 
 function Home() {
   const [inputValue, setInputValue] = useState("");
   const [tasks, setTasks] = useState([]);
+  const [currentFilter, setCurrentFilter] = useState("Completed");
   const handleClick = () => {
     setTasks([inputValue, ...tasks]);
   };
+  const handleFilterChange = (buttonName) => {
+    setCurrentFilter(buttonName);
+  };
+  const filterButton = ["All", "Active", "Completed"];
   const deleteTask = (indexToDelete) => {
     const updatedTask = tasks.filter((_, index) => index !== indexToDelete);
     setTasks(updatedTask);
@@ -28,15 +35,15 @@ function Home() {
             </button>
           </div>
           <div className="flex gap-2 justify-start w-[345px] ">
-            <button className="bg-blue-500 text-[14px] text-white rounded-md w-[40px] h-[35px]">
-              All
-            </button>
-            <button className="rounded-md w-[80px] bg-gray-100 text-[14px] ">
-              Active
-            </button>
-            <button className=" rounded-md w-[100px] text-[14px] bg-gray-100 font-thin">
-              Completed
-            </button>
+            {filterButton.map((btn) => {
+              return (
+                <Tab
+                  handleFilterChange={handleFilterChange}
+                  buttonName={btn}
+                  isActive={btn == currentFilter}
+                />
+              );
+            })}
           </div>
           <div className="flex flex-col items-center gap-1">
             {tasks.length > 0 ? (

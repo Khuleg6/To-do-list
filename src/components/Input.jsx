@@ -1,6 +1,6 @@
 import React from "react";
 
-const Input = ({ inputChanger }) => {
+export const Input = ({ inputChanger }) => {
   const handleChange = (event) => {
     inputChanger(event.target.value);
   };
@@ -14,5 +14,3 @@ const Input = ({ inputChanger }) => {
     </div>
   );
 };
-
-export default Input;
