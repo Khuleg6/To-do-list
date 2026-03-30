@@ -8,7 +8,7 @@ import { useState } from "react";
 function Home() {
   const [inputValue, setInputValue] = useState("");
   const [tasks, setTasks] = useState([]);
-  const [currentFilter, setCurrentFilter] = useState("Completed");
+  const [currentFilter, setCurrentFilter] = useState("All");
   const handleClick = () => {
     setTasks([inputValue, ...tasks]);
   };
