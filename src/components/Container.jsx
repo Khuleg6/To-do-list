@@ -1,11 +1,26 @@
 import React from "react";
 
-export const Container = ({ taskname, onDelete }) => {
+export const Container = ({
+  taskname,
+  onDelete,
+  isCompleted = true,
+  handleChecked,
+}) => {
   return (
     <div className=" bg-gray-100 hover:bg-gray-200 rounded-md h-[62px] w-[345px] flex items-center justify-between px-4">
       <div className="flex gap-2 items-center">
-        <input className="w-[20px] h-[20px]" type="checkbox"></input>
-        <p className="text-[15px] text-gray-800">{taskname}</p>
+        <input
+          className="w-[20px] h-[20px]"
+          type="checkbox"
+          checked={isCompleted}
+          onChange={handleChecked}
+        />
+        <p
+          className="text-[15px] text-gray-800"
+          style={{ textDecoration: isCompleted ? "line-through" : "" }}
+        >
+          {taskname}
+        </p>
       </div>
       <p
         onClick={onDelete}
