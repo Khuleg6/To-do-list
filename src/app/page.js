@@ -39,12 +39,20 @@ function Home() {
   };
 
   const deleteTask = (taskID) => {
-    const updatedTask = tasks.filter((task) => taskID !== task.id);
-    setTasks(updatedTask);
+    if (window.confirm("Are you to delete?")) {
+      const updatedTask = tasks.filter((task) => taskID !== task.id);
+      setTasks(updatedTask);
+    } else {
+      return;
+    }
   };
   const deleteAll = () => {
-    const updatedTasks = tasks.filter((task) => task.isCompleted === false);
-    setTasks(updatedTasks);
+    if (window.confirm("Are you sure to delete all completed tasks?")) {
+      const updatedTasks = tasks.filter((task) => task.isCompleted === false);
+      setTasks(updatedTasks);
+    } else {
+      return;
+    }
   };
 
   const filtered = tasks.filter((task) => {
